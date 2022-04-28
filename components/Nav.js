@@ -7,15 +7,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
-import MenuIcon from '@mui/icons-material/Menu';
-import Router from "next/router";
-import Link from "next/link";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-
 import MenuItem from '@mui/material/MenuItem';
 import { createSvgIcon } from '@mui/material/utils';
-import style from "@/styles/Nav.module.css";
+import styles from "@/styles/Nav.module.css";
 
 const HomeIcon = createSvgIcon(
   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
@@ -56,17 +52,6 @@ export function Nav(){
       setImageInfos({imageUrl: 'https://www.w3schools.com/howto/img_avatar.png', imageTitle: 'users'})
     }
   }, [])
-
-  // const basicUrls = ["/basic/counter","/basic/calc","/basic/bmi"]
-  // const basicSubTitle = ["카운터","계산기","BMI", "게시판"]
-  // const todoUrls = ["/todo/addTodo","/todo/getTodos","/todo/modifyTodo","/todo/removeTodo"]
-  // const todoSubTitle = ["할일등록","할일목록","할일수정","할일삭제"]
-  // const gameUrls = ["/game/addGame","/game/getGames","/game/modifyGame","/game/removeGame"]
-  // const gameSubTitle = ["게임등록","게임목록","게임수정","게임삭제"]
-  // const teamUrls = ["/team/addTeam","/team/getTeams","/team/modifyTeam","/team/removeTeam"]
-  // const teamSubTitle = ["팀등록","팀목록","팀수정","팀삭제"]
-  // const boardUrls = ["/board/writeArticle","/board/getArticles","/board/modifyArticle","/board/removeArticle"]
-  // const boardSubTitle = ["글등록","글목록","글수정","글삭제"]
   
   return (
     <AppBar position="static" style={{marginBottom:"70px"}}>
@@ -103,7 +88,7 @@ export function Nav(){
             >
               {userUrls.urls.map((urls, i) => (
                 <MenuItem key={i} >
-                <a href={urls}><Typography textAlign="center" onClick={handleCloseUserMenu}>{userUrls.subTitles[i]}</Typography></a>
+                  <a href={urls}><Typography textAlign="center" onClick={handleCloseUserMenu}>{userUrls.subTitles[i]}</Typography></a>
                 </MenuItem> ))}
             </Menu>
           </Box>

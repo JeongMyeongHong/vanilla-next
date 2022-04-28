@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import style from "@/styles/Header.module.css";
+import styles from "@/styles/Header.module.css";
 
 export function Header() {
     return (
