@@ -1,5 +1,5 @@
 import styles from "@/styles/Layout.module.css";
-import { Footer, Header, Modal, Nav, Pagination, Table } from '@/components'
+import { Modal, Pagination, Table } from '@/components'
 
 
 export function Layout({ children }){

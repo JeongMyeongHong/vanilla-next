@@ -36,7 +36,7 @@ export function* counterSaga() {
 
 const initialState = 0; // 상태는 꼭 객체일 필요 없습니다. 숫자도 작동해요.
 
-const counter = handleActions(
+const counterReducer = handleActions(
   {
     [INCREASE]: state => state + 1,
     [DECREASE]: state => state - 1
@@ -44,4 +44,4 @@ const counter = handleActions(
   initialState
 );
 
-export default counter;
+export default counterReducer;
