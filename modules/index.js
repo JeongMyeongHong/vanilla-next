@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 import { all } from "redux-saga/effects";
 import counter, { counterSaga } from './basic/counter'
-import auth, { registerSaga } from './auth/register'
+import register, { registerSaga } from './auth/register'
+import login, { loginSaga } from './auth/login'
 
 const rootReducer = combineReducers({
     counter,
-    auth
+    register,
+    login
 })
 export function* rootSaga(){
-    yield all([ counterSaga(), registerSaga()])
+    yield all([ counterSaga(), registerSaga(), loginSaga()])
 }
 export default rootReducer

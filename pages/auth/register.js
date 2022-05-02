@@ -23,7 +23,7 @@ const RegisterPage = () => {
   );
 };
 
-const mapStateToProps = state => ({ isRegisterd: state.isRegisterd })
+const mapStateToProps = state => ({ isRegisterd: state.register.isRegisterd })
 const registerActions = {registerRequest, unregisterRequest}
 
 export default connect(mapStateToProps, registerActions)(RegisterPage)

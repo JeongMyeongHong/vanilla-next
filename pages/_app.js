@@ -5,14 +5,14 @@ import styles from "@/styles/Header.module.css";
 
 
 const App = ({ Component, pageProps }) => {
-  return (<>
+  return (<div>
     <Nav/>
       <Header className={styles.header}/>
       <Layout>
         <Component {...pageProps} />
       </Layout>
       <Footer/>
-      </>
+      </div>
     )
 }
 

@@ -17,10 +17,10 @@ const LoginPage = ({}) => {
         e.preventDefault()
         alert(`로그인 정보 ${JSON.stringify(user)}`)
         dispatch(loginRequest(user))
-        setUser({ userid:'', password:'' })
+        // setUser({ userid:'', password:'' })
     }
     return (<Login onChange={onChange} onSubmit={onSubmit}/>);
 };
-const mapStateToProps = state => ({loginUser: state.loginUser})
+const mapStateToProps = state => ({loginUser: state.login.loginUser})
 const loginActions = {loginRequest}
 export default connect(mapStateToProps, loginActions)(LoginPage);

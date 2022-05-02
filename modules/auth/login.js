@@ -1,5 +1,12 @@
 import {createAction, handleActions} from 'redux-actions';
-import {call, delay, put, takeLatest, select, throttle} from 'redux-saga/effects';
+import {
+    call,
+    delay,
+    put,
+    takeLatest,
+    select,
+    throttle
+} from 'redux-saga/effects';
 import {HYDRATE} from "next-redux-wrapper"
 import axios from 'axios'
 
@@ -10,8 +17,9 @@ const headers = {
 }
 export const initialState = {
     loginUser: null,
-    loginError: null,
-    isLoggined: false
+    isLoggined: false,
+    token: '',
+    loginError: null
 }
 
 const LOGIN_REQUEST = 'auth/LOGIN_REQUEST';
@@ -28,30 +36,55 @@ export const logoutRequest = createAction(LOGOUT_REQUEST, data => data)
 
 export function* loginSaga() {
     yield takeLatest(LOGIN_REQUEST, signin);
-    yield takeLatest(LOGIN_CANCELLED, loginCancell);
+    yield takeLatest(LOGIN_CANCELLED, loginCancel);
 }
 function* signin(action) {
     try {
         const response = yield call(loginAPI, action.payload)
-        console.log(" 로그인 서버다녀옴: " + JSON.stringify(response.data))
-        yield put({type: LOGIN_SUCCESS, payload: response.data})
+        const result = response
+            .data
+            console
+            .log(" 로그인 서버다녀옴: " + JSON.stringify(result))
+        yield put({type: LOGIN_SUCCESS, payload: result})
+        yield put({type: SAVE_TOKEN, payload: result.token})
         yield put(window.location.href = "/")
     } catch (error) {
         yield put({type: LOGIN_FAILURE, payload: error.message})
     }
 }
-const loginAPI = payload => axios.post(`${SERVER}/user/login`, payload, {headers})
+const loginAPI = payload => axios.post(
+    `${SERVER}/user/login`,
+    payload,
+    {headers}
+)
 
-function* loginCancell(action) {
+function* loginCancel(action) {
     try {
         console.log(`로그인 취소`)
-    } catch (error) {
-    }
+    } catch (error) {}
 }
 
 const login = handleActions({
-    [HYDRATE]: (state, action) => 
-    ({...state, ...action.payload})}, 
-    initialState
-)
+    [HYDRATE]: (state, action) => ({
+        ...state,
+        ...action.payload
+    }),
+    [LOGIN_SUCCESS]: (state, action) => ({
+        ...state,
+        loginUser: action.payload,
+        isLoggined: true
+    }),
+    [LOGIN_FAILURE]: (state, action) => ({
+        ...state,
+        loginError: action.payload
+    }),
+    [SAVE_TOKEN]: (state, action) => ({
+        ...state,
+        token: action.payload
+    }),
+    [DELETE_TOKEN]: (state, action) => ({
+        ...state,
+        token: ''
+    })
+}, initialState)
 export default login

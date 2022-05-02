@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { createSvgIcon } from '@mui/material/utils';
-import styles from "@/styles/Nav.module.css";
+import { useSelector } from 'react-redux';
+
 
 const HomeIcon = createSvgIcon(
   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
@@ -21,7 +22,7 @@ const HomeIcon = createSvgIcon(
 const basicSettings = {subTitles: ['카운터', '계산기', 'BMI', '게시판'], urls: ["/basic/counter","/basic/calc","/basic/bmi", '/board/list']};
 
 export function Nav(){
-  const [imageInfos, setImageInfos] = useState([]);
+  const [imageInfos, setImageInfos] = useState({imageUrl: 'https://as2.ftcdn.net/v2/jpg/01/85/61/65/1000_F_185616556_uCc1J5d5GNfRH6ErgP1G8x8ORLeG25en.jpg', imageTitle: 'sign'});
   const [userUrls, setUserUrls] = useState({subTitles:[], urls:[]});
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,13 +43,15 @@ export function Nav(){
     setAnchorElUser(null);
   };
 
+  const loginUser = useSelector( (state) => state.login.loginUser)
+  const isLoggined = useSelector( (state) => state.login.isLoggined)
+
   useEffect(() => {
-    const loginUser = localStorage.getItem("loginUser")
-    if (loginUser === null) {
+    if (!isLoggined) {
       setUserUrls({subTitles: ['회원가입', '로그인'], urls: ["/auth/register","/auth/login"]})
       setImageInfos({imageUrl: 'https://as2.ftcdn.net/v2/jpg/01/85/61/65/1000_F_185616556_uCc1J5d5GNfRH6ErgP1G8x8ORLeG25en.jpg', imageTitle: 'sign'})
     } else {
-      setUserUrls({subTitles: ["프로필", "정보수정", "로그아웃" , "회원탈퇴"], urls: ["/auth/profile", "/auth/modifyUser", "/auth/logout", "/auth/delUser"]})
+      setUserUrls({subTitles: ["프로필", "정보수정", "로그아웃" , "회원탈퇴"], urls: ["/user/profile", "/user/modifyUser", "/user/logout", "/user/delUser"]})
       setImageInfos({imageUrl: 'https://www.w3schools.com/howto/img_avatar.png', imageTitle: 'users'})
     }
   }, [])
@@ -65,12 +68,11 @@ export function Nav(){
           
           <Box sx={{ flexGrow: 1, color: 'white', display: { xs: 'none', md: 'flex' } }}>
             {basicSettings.urls.map((urls, i) => (
-              <a href={urls} style = {{textDecoration: 'none'}}><Button key={i} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
+              <a href={urls} key={i} style = {{textDecoration: 'none'}}><Button key={i} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }} >
                 {basicSettings.subTitles[i]} </Button>
               </a>))}
           </Box>
           
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={imageInfos.imageTitle}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

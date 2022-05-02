@@ -44,23 +44,22 @@ export function Register( { onChange, onSubmit } ){
                         회원가입
                     </Typography>
                         <Box component="form" onSubmit={onSubmit} noValidate="noValidate" sx={{ mt: 3 }} >
-                            <Grid container="container" spacing={2}>
-                                <Grid item="item" xs={12} sm={6}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6} sm={6}>
                                     <TextField
                                         name="userid"
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required={true}
+                                        fullWidth={true}
                                         id="userid"
                                         label="사용자 ID"
-                                        autoFocus="autoFocus"
                                         onChange={onChange}
                                         />
                                 </Grid>
 
-                                <Grid item="item" xs={12} sm={6}>
+                                <Grid item xs={6}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth={true}
                                         id="name"
                                         label="이 름"
                                         name="name"
@@ -68,10 +67,10 @@ export function Register( { onChange, onSubmit } ){
                                         />
                                 </Grid>
 
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth
                                         id="password"
                                         label="비밀번호"
                                         name="password"
@@ -79,10 +78,10 @@ export function Register( { onChange, onSubmit } ){
                                         />
                                 </Grid>
 
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth
                                         id="email"
                                         label="이메일"
                                         name="email"
@@ -90,30 +89,30 @@ export function Register( { onChange, onSubmit } ){
                                         />
                                 </Grid>
 
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth
                                         id="phone"
                                         label="폰번호"
                                         name="phone"
                                         onChange={onChange}
                                         />
                                 </Grid>
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth
                                         id="birth"
                                         label="생년월일"
                                         name="birth"
                                         onChange={onChange}
                                         />
                                 </Grid>
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
-                                        required="required"
-                                        fullWidth="fullWidth"
+                                        required
+                                        fullWidth
                                         id="address"
                                         label="주소"
                                         name="address"
@@ -121,7 +120,7 @@ export function Register( { onChange, onSubmit } ){
                                         />
                                 </Grid>
 
-                                <Grid item="item" xs={12}>
+                                <Grid item xs={12}>
                                     <FormControlLabel
                                         control={<Checkbox value = "allowExtraEmails" color = "primary" />}
                                         label="I want to receive inspiration, marketing promotions and updates via email."/>
@@ -129,7 +128,7 @@ export function Register( { onChange, onSubmit } ){
                             </Grid>
                             <Button
                                 type="submit"
-                                fullWidth="fullWidth"
+                                fullWidth
                                 variant="contained"
                                 sx={{
                                     mt: 3,
@@ -137,8 +136,8 @@ export function Register( { onChange, onSubmit } ){
                                 }}>
                                 전 송
                             </Button>
-                            <Grid container="container" justifyContent="flex-end">
-                                <Grid item="item">
+                            <Grid container justifyContent="flex-end">
+                                <Grid item>
                                     <Link href="/auth/login" variant="body2">
                                         로그인 화면으로 전환
                                     </Link>

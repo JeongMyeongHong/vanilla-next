@@ -59,18 +59,18 @@ export function Login({onChange, onSubmit}) {
                         }}>
                         <TextField
                             margin="normal"
-                            required="required"
-                            fullWidth="fullWidth"
+                            required
+                            fullWidth
                             id="userid"
                             label="사용자 아이디"
                             name="userid"
                             autoComplete="userid"
-                            autoFocus="autoFocus"
+                            autoFocus
                             onChange={onChange}/>
                         <TextField
                             margin="normal"
-                            required="required"
-                            fullWidth="fullWidth"
+                            required
+                            fullWidth
                             name="password"
                             label="비밀번호"
                             type="password"
@@ -82,7 +82,7 @@ export function Login({onChange, onSubmit}) {
                             label="Remember me"/>
                         <Button
                             type="submit"
-                            fullWidth="fullWidth"
+                            fullWidth 
                             variant="contained"
                             sx={{
                                 mt: 3,
